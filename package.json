@@ -6,7 +6,9 @@
   "scripts": {
     "build": "tsc",
     "build:watch": "tsc --watch",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test": "jest",
+    "test:watch": "jest --watch"
   },
   "repository": {
     "type": "git",
@@ -21,12 +23,23 @@
   },
   "homepage": "https://github.com/SandyElkassar/pr-tone-lint#readme",
   "devDependencies": {
+    "@types/jest": "^30.0.0",
     "@types/node": "^25.3.0",
+    "jest": "^30.2.0",
+    "ts-jest": "^29.4.6",
     "typescript": "^5.9.3"
   },
   "dependencies": {
     "@actions/core": "^3.0.0",
     "@actions/github": "^9.0.0",
     "openai": "^6.23.0"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "testMatch": [
+      "**/tests/**/*.test.ts"
+    ],
+    "clearMocks": true
   }
 }
