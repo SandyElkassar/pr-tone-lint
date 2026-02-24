@@ -43,3 +43,10 @@ runs:
       run: node dist/index.js
       shell: bash
       working-directory: ${{ github.action_path }}
+      env:
+        INPUT_GITHUB-TOKEN: ${{ inputs.github-token }}
+        INPUT_OPENAI-API-KEY: ${{ inputs.openai-api-key }}
+        INPUT_BLAME-THRESHOLD: ${{ inputs.blame-threshold }}
+        INPUT_TONE: ${{ inputs.tone }}
+        INPUT_POST-ON-BORDERLINE: ${{ inputs.post-on-borderline }}
+
