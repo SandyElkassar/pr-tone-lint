@@ -1,0 +1,32 @@
+{
+  "name": "pr-tone-lint",
+  "version": "1.0.0",
+  "description": "It has personality, which makes it memorable",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "typecheck": "tsc --noEmit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SandyElkassar/pr-tone-lint.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/SandyElkassar/pr-tone-lint/issues"
+  },
+  "homepage": "https://github.com/SandyElkassar/pr-tone-lint#readme",
+  "devDependencies": {
+    "@types/node": "^25.3.0",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "@actions/core": "^3.0.0",
+    "@actions/github": "^9.0.0",
+    "openai": "^6.23.0"
+  }
+}
