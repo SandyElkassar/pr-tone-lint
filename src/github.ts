@@ -48,10 +48,22 @@ export async function postReply(
     context: CommentContext,
     message: string,
 ): Promise<void> {
-    await octokit.rest.issues.createComment({
-        owner: context.repoOwner,
-        repo: context.repoName,
-        issue_number: context.prNumber,
-        body: message,
-    })
+    try {
+        // Try to reply directly in the review comment thread first
+        await octokit.rest.pulls.createReplyForReviewComment({
+            owner: context.repoOwner,
+            repo: context.repoName,
+            pull_number: context.prNumber,
+            comment_id: context.commentId,
+            body: message,
+        })
+    } catch {
+        // Fall back to a general PR comment if it's not a review comment
+        await octokit.rest.issues.createComment({
+            owner: context.repoOwner,
+            repo: context.repoName,
+            issue_number: context.prNumber,
+            body: message,
+        })
+    }
 }
