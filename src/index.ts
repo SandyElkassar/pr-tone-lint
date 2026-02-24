@@ -46,7 +46,23 @@ async function run(): Promise<void> {
 
         core.info('Tone lint comment posted successfully.')
     } catch (error) {
-        core.setFailed(`PR Tone Lint failed: ${error instanceof Error ? error.message : String(error)}`)
+        if (error instanceof Error) {
+            // Rate limit or quota — fail silently, don't block the PR
+            if (error.message.includes('429') || error.message.includes('quota')) {
+                core.warning('PR Tone Lint: OpenAI quota exceeded. Skipping analysis.')
+                return
+            }
+
+            // Auth error — API key is wrong or missing
+            if (error.message.includes('401')) {
+                core.setFailed('PR Tone Lint: Invalid OpenAI API key. Check your OPENAI_API_KEY secret.')
+                return
+            }
+
+            core.setFailed(`PR Tone Lint failed: ${error.message}`)
+        } else {
+            core.setFailed(`PR Tone Lint failed: ${String(error)}`)
+        }
     }
 }
 
