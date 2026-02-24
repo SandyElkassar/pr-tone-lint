@@ -1,4 +1,5 @@
 # PR Tone Lint 🎯
+It has personality, which makes it memorable
 
 > A tone linter for code reviews. Catches blame language, scores it, 
 > and suggests neutral rewrites — automatically.
@@ -51,10 +52,6 @@ PR Tone Lint replies:
 
 Create `.github/workflows/tone-lint.yml`:
 
-# pr-tone-lint
-It has personality, which makes it memorable
-
-aml
 name: PR Tone Lint
 
 
